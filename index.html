@@ -1,0 +1,276 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="InvThink: Towards AI Safety via Inverse Reasoning">
+  <meta name="keywords" content="InvThink, AI Safety, Inverse Reasoning of LLMs">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InvThink: Towards AI Safety via Inverse Reasoning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/bed-svgrepo-com.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">InvThink: Towards AI Safety via Inverse Reasoning</h1>
+
+          <div class="column has-text-centered">   
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/assets/invthink_preprint.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/invthink/invthink"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+            <!-- <div class="is-size-5 publication-news">
+              <br>
+              <p>
+                🎉 <strong>News:</strong> Our paper has been accepted at XXX
+                <strong>May 15, 2025:</strong> The paper and the code will be updated after the paper gets accepted.
+              </p>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/invthink_teaser.gif" width="100%" alt="InvThink Teaser">
+      <h2 class="subtitle has-text-centered">
+        <span style="font-variant: small-caps; font-size: 1.3em;">InvThink</span> is a framework that enables LLMs to perform inverse thinking—the ability to anticipate potential harms before reasoning forward—thereby improving both safety and reasoning performance on benchmarks.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present <span style="font-variant: small-caps; font-size: 1.3em;">InvThink</span>, a simple yet powerful approach that gives large language models (LLMs) the capability of <i>inverse thinking</i>: reasoning through failure modes before generating responses. Unlike existing safety alignment methods that optimize directly for safe response, <span style="font-variant: small-caps; font-size: 1.3em;">InvThink</span> instructs models to 1) enumerate potential harms, 2) analyze their consequences, and 3) generate safe outputs that proactively avoid these risks. Our method reveals three key findings: (i) safety improvements show stronger scaling with model size compared to existing safety methods. (ii) <span style="font-variant: small-caps; font-size: 1.3em;">InvThink</span> mitigates <i>safety tax</i>; by training models to systematically consider failure modes, it preserves general reasoning capabilities on standard benchmarks. (iii) beyond general safety tasks, <span style="font-variant: small-caps; font-size: 1.3em;">InvThink</span> excels in high-stakes domains including external-facing (medicine, finance, law) and agentic (blackmail, murder) risk scenarios, achieving up to 15.7% reduction in harmful responses compared to baseline methods like SafetyPrompt. We further implement <span style="font-variant: small-caps; font-size: 1.3em;">InvThink</span> via supervised fine-tuning, and reinforcement learning across three LLM families. These results suggest that inverse reasoning provides a scalable and generalizable path toward safer, more capable language models.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Method</h2>
+    </div>
+    <br>
+    <div class="columns is-centered is-align-items-start">
+      <figure>
+        <img src="./static/images/algorithm_comparision.png" alt="Method">
+        <figcaption class="has-text-centered">Table 1. Comparison of Reasoning Methods with Safety-Related Features</figcaption>
+      </figure>
+    </div>
+    <div class="content">
+      <h3 class="title is-5">Inverse Thinking Framework</h3>
+      <p>Let <em>X</em> denote the space of input queries and <em>Y</em> the space of possible responses. For a given query <em>x ∈ X</em>, our goal is to generate a safe and helpful response <em>y* ∈ Y</em>. Standard approaches model this as learning a direct mapping <em>p(y|x)</em>. In contrast, <strong>InvThink</strong> introduces an intermediate structured reasoning process.</p>
+      <p>We define a latent reasoning trace <em>z<sub>inv</sub></em>, which explicitly models the process of identifying and mitigating potential harms. This trace consists of:</p>
+      <ul>
+        <li>Harm enumeration</li>
+        <li>Consequence analysis</li>
+        <li>Mitigation strategy</li>
+      </ul>
+      <p>The final response <em>y*</em> is then conditioned on both the original query <em>x</em> and this inverse reasoning trace <em>z<sub>inv</sub></em>. The overall generative process is decomposed into two steps:</p>
+      <ol>
+        <li>
+          <strong>Inverse Reasoning Step</strong>: Generate the safety-focused reasoning trace given the input query:
+          <br>
+          <code>z<sub>inv</sub> ~ p<sub>θ</sub>(z | x)</code>
+        </li>
+        <li>
+          <strong>Constrained Generation Step</strong>: Generate the final response conditioned on both the query and the reasoning trace:
+          <br>
+          <code>y* ~ p<sub>θ</sub>(y | x, z<sub>inv</sub>)</code>
+        </li>
+      </ol>
+      <p>Here, <em>θ</em> represents the parameters of the language model. Our training methodology is designed to teach the model to produce this structured two-step output, effectively internalizing the process of inverse thinking.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Main Results</h2>
+    </div>
+    <br>
+    <div class="columns is-centered is-align-items-start">
+      <div class="column is-half">
+        <img src="./static/images/safety_performance_result.png" alt="Main Results">
+        <figcaption class="has-text-centered">Table 2. Main Results of Performance over Benchmarks</figcaption>
+      </div>
+      <div class="column is-half">
+        <div class="content">
+          <h3 class="title is-5">Overall Performance</h3>
+          <p>InvThink consistently delivers measurable and reliable safety improvements across all evaluated models and benchmarks. Unlike conventional methods that primarily suppress surface-level harmful expressions, InvThink introduces a proactive framework for identifying and mitigating risks before they emerge in model outputs. This makes it particularly effective when models are deployed in open-ended, real-world scenarios. The system not only improves benchmark scores but also demonstrates the ability to surgically eliminate high-stakes vulnerabilities such as insider threats, where other approaches often fall short. Overall, InvThink establishes itself as a robust safety layer that adapts across domains and task types.</p>
+          <ul>
+            <li>On SafetyBench, it achieves an 8-12% improvement in identifying unsafe content.</li>
+            <li>On TRIDENT, which tests open-ended ethical reasoning, InvThink reduces harmfulness by up to 30.4% compared to a strong fine-tuned baseline.</li>
+            <li>On the Insider Threat task, the SFT+RL variant eliminates all harmful outputs, driving risk scores to 0.00 across every model.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="columns is-centered is-align-items-start">
+      <div class="column is-half">
+        <div class="content">
+          <h3 class="title is-5">Strength in Safety Reasoning (SafetyBench)</h3>
+          <p>On SafetyBench, InvThink shows that its greatest advantage lies in reasoning about the consequences of actions rather than simply detecting harmful keywords or patterns. The model achieves significant improvements in categories where understanding causal chains of harm is essential, such as illegal activities, physical health, and questions of ethics and morality. These results highlight InvThink's ability to anticipate how information could be misused, and to judge not only what is explicitly unsafe but also what may become unsafe depending on context. While the gains in more pattern-based categories like mental health or offensiveness are smaller, they are still consistent, suggesting that InvThink provides broad benefits while excelling in the more demanding reasoning-heavy cases.</p>
+          <ul>
+            <li>The largest gains appear in categories requiring causal harm reasoning:
+              <ol>
+                <li>Illegal Activities: +15.8% (N=1,767)</li>
+                <li>Physical Health: +12.5% (N=1,140)</li>
+                <li>Ethics & Morality: +10.0% (N=1,926)</li>
+              </ol>
+            </li>
+            <li>More pattern-based categories show smaller but still meaningful improvements:
+              <ol>
+                <li>Mental Health: +7.9% (N=1,561)</li>
+                <li>Offensiveness: +2.4% (N=1,801)</li>
+              </ol>
+            </li>
+            <li>This demonstrates InvThink's ability to anticipate indirect harms and manage nuanced safety challenges.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="content">
+          <h3 class="title is-5">Ethical Refusals (TRIDENT)</h3>
+          <p>The TRIDENT benchmark reveals InvThink's strength in handling ethically nuanced requests grounded in real-world professional standards. Here, the system consistently reduces harmful compliance rates across domains such as legal practice, medicine, and finance. Importantly, InvThink outperforms methods that rely only on explicit safety prompts, proving that structured frameworks for harm anticipation are more effective than simple instructions to “be safe.” Through its inverse reasoning strategy, InvThink is able to foresee how a professional obligation might be violated before producing a response, enabling it to reject unethical instructions in a principled and context-sensitive manner. This capability is crucial for deploying models in high-stakes environments where subtle ethical missteps can have serious consequences.</p>
+          <ul>
+            <li>Average harmfulness scores:
+              <ol>
+                <li>Zero-shot: 3.12</li>
+                <li>SafetyPrompt: 2.53</li>
+                <li>InvThink: 2.17 (-30.4%)</li>
+                <li>InvThink SFT: 1.52-1.84</li>
+              </ol>
+            </li>
+            <li>Improvements are consistent across all domains, reflecting InvThink's generalizable reasoning framework.</li>
+            <li>Unlike simple instruction-based prompting, InvThink explicitly enumerates potential harms through inverse reasoning, enabling models to anticipate and avoid violations of professional obligations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="columns is-centered is-align-items-start">
+      <div class="column is-half">
+        <img src="./static/images/reasoning_ablation.png" alt="Main Results 2">
+        <figcaption class="has-text-centered">Table 3. Effectiveness over Reasoning vs. Non-Reasoning Models</figcaption>
+      </div>
+      <div class="column is-half">
+        <div class="content">
+          <h3 class="title is-5">Performance across Reasoning and Non-Reasoning Models</h3>
+          <p>Interestingly, reasoning-enhanced models often show higher baseline harmful behavior because advanced reasoning capabilities enable more sophisticated unsafe actions. This phenomenon, known as the <em>“capability curse”</em>, is effectively neutralized by InvThink. By redirecting reasoning power toward identifying, enumerating, and avoiding harm, InvThink transforms a potential weakness into a strength.</p>
+          <ul>
+            <li><strong>Reasoning-enhanced models</strong>: while they often show higher baseline harmful behavior due to advanced capabilities (the so-called <em>“capability curse”</em>), InvThink neutralizes this by redirecting reasoning power toward harm identification and avoidance.</li>
+            <li>By transforming reasoning ability from a liability into a strength, InvThink provides a principled and scalable approach to safety across diverse model classes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Advancing Safety and General Reasoning Together</h2>
+        <br>
+        <div class="content has-text-justified">
+          <img src="./static/images/reasoning_performance_result.png" alt="Reasoning Evaluation">
+          <figcaption class="has-text-centered">Table 4. Performance over other Reasoning Benchmarks</figcaption>
+          <br>
+          <p>Conventional safety training often suffers from the so-called Safety Tax: improving safety at the expense of general reasoning performance. InvThink overcomes this trade-off, demonstrating gains in both safety and general capabilities.</p>
+          <ul>
+            <li>Empirical Gains: Up to +5.0% on GPQA and MATH500, and +2.0% on MMLU (SFT variant).</li>
+            <li>Core Principle: By explicitly training models to enumerate and analyze failure modes, InvThink instills the ability not only to generate plausible solutions but also to systematically eliminate invalid reasoning paths.</li>
+          </ul>
+          <p>
+            This structured approach fosters a more rigorous and constraint-sensitive reasoning process, enabling robust improvements across domains such as mathematics and logic. By cultivating the skill of ruling out incorrect solutions as well as finding correct ones, InvThink establishes a new paradigm:
+            👉 Safety and reasoning performance can advance hand-in-hand, rather than in opposition.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
