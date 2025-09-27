@@ -2,12 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="INVTHINK: SCALING AI SAFETY THROUGH INVERSE
-        REASONING">
-  <meta name="keywords" content="">
+  <meta name="description" content="InvThink: Towards AI Safety via Inverse Reasoning">
+  <meta name="keywords" content="InvThink, AI Safety, Inverse Reasoning of LLMs">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>InvThink: Scaling AI Safety Through Inverse Reasoning</title>
+  <title>InvThink: Towards AI Safety via Inverse Reasoning</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -59,11 +57,37 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">InvThink: Scaling AI Safety Through Inverse Reasoning</h1>
-        
+          <h1 class="title is-2 publication-title">InvThink: Towards AI Safety via Inverse Reasoning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="">ANONYMOUS</a><sup>1</sup>,</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>ANONYMOUS</span>
+          </div>
+
           <div class="column has-text-centered">   
             <div class="publication-links">
               <!-- PDF Link. -->
+               <span class="link-block">
+                <a href="./static/assets/InvThink_Towards_AI_Safet.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
               <span class="link-block">
                 <a href="https://github.com/invthink/invthink"
                    class="external-link button is-normal is-rounded is-dark">
@@ -73,19 +97,11 @@
                   <span>Code</span>
                   </a>
               </span>
-              <!-- <span class="link-block">
-                <a href="demo.html"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Demo</span>
-                </a>
-            </span> -->
             </div>
-<!--             <div class="is-size-5 publication-news">
+            <!-- <div class="is-size-5 publication-news">
               <br>
               <p>
+                🎉 <strong>News:</strong> Our paper has been accepted at XXX
                 <strong>May 15, 2025:</strong> The paper and the code will be updated after the paper gets accepted.
               </p>
             </div> -->
@@ -96,6 +112,77 @@
   </div>
 </section>
 
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/invthink_teaser.jpg" width="100%" alt="InvThink Teaser">
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">InvThink</span> is a framework that enables LLMs to perform inverse thinking—the ability to anticipate potential harms before reasoning forward—thereby improving both safety and reasoning performance on benchmarks.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present InvThink, a simple yet powerful approach that gives large language models (LLMs) the capability of inverse thinking: reasoning through failure modes before generating responses. Unlike existing safety alignment methods that optimize directly for safe response, InvThink instructs models to 1) enumerate potential harms, 2) analyze their consequences, and 3) generate safe outputs that proactively avoid these risks. Our method reveals three key findings: (i) safety improvements show stronger scaling with model size compared to existing safety methods. (ii) InvThink mitigates safety tax; by training models to systematically consider failure modes, it preserves general reasoning capabilities on standard benchmarks. (iii) beyond general safety tasks, InvThink excels in high-stakes domains including external-facing (medicine, finance, law) and agentic (blackmail, murder) risk scenarios, achieving up to 15.7\% reduction in harmful responses compared to baseline methods like SafetyPrompt. We further implement InvThink via supervised fine-tuning, and reinforcement learning across three LLM families. These results suggest that inverse reasoning provides a scalable and generalizable path toward safer, more capable language models.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Safety Evaluation</h2>
+    </div>
+    <br>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <p>
+            We reveal that InvThink provides consistent safety improvements across all models and benchmarks. Also, we offer several critical insights into the nature and value of this approach. First, the performance gap between InvThink and baseline methods widens dramatically as tasks shift from constrained safety identification (SafetyBench, approximate 8-12% gain) to open-ended, ethically nuanced generation (TRIDENT, up to a 30.4% reduction in harmfulness against a strong, fine-tuned baseline). This suggests while conventional methods are competent at recognizing explicitly unsafe content, InvThink's proactive risk analysis is uniquely effective at navigating the subtle, context-dependent failure modes characteristic of real-world scenarios. This precision is most starkly illustrated by the Insider Threat. Here, the full InvThink SFT+RL approach eliminates harmful outputs, reducing risk scores to 0.00 across all models. This demonstrates that InvThink does not merely suppress general toxicity but can be used to surgically target and remove specific, high-stakes threat vectors, a capability beyond the reach of more generalized safety training.
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="columns is-centered">
+          <img src="./static/images/safety_performance_result.png" alt="Safety Evaluation">
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Reasoning Evaluation</h2>
+        <div class="content has-text-justified">
+          <p>
+            The table examines the interaction between safety training and general capabilities. Traditional safety training often imposes safety tax, where improved safety comes at the cost of reduced performance on general tasks. Remarkably, InvThink-trained models show improvements on several reasoning benchmarks: up to +5.0% on GPQA and MATH500, and +2.0% on MMLU for the SFT variant. We hypothesize this performance boost stems from an improvement in the model's meta-cognitive abilities. The process of enumerating failure modes forces the model to consider a problem's constraints and edge cases more deeply. This structured exploration of the `negative space' of a problem may cultivate a more robust and systematic reasoning process that is transferable to general domains like mathematics and logic, where identifying invalid paths is as crucial as finding the correct one.
+          </p>
+          <img src="./static/images/reasoning_performance_result.png" alt="Reasoning Evaluation">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>TBD</code></pre>
+  </div>
+</section>
 
 </body>
 </html>
